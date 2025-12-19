@@ -1,5 +1,6 @@
 # Packages to note
-pip install uv
+
+- conda install -c conda-forge librosa
 
 # Python Version
 I shouldddd do python 3.9 if dependencies allow it

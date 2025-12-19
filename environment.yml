@@ -1,0 +1,4 @@
+name: capstone_testing
+dependencies:
+- python=3.10
+- librosa=0.11.*
