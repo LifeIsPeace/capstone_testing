@@ -5,6 +5,9 @@ pip install uv
 I shouldddd do python 3.9 if dependencies allow it
 python = 3.10
 
+# Notes for General Set up
+Conda should install as many packages as it can on its own (at once/in one command), only then should pip be used. If more conda packages are needed after already using pip then it's best to remake the conda environment.
+
 # Links for General Set up
 **To preview markdown files without downloading any extensions.**</br>
 https://stackoverflow.com/questions/73049432/how-can-i-open-a-md-file-in-vs-code-preview-mode-from-terminal
