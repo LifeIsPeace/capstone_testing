@@ -1,17 +1,27 @@
 # Packages to note
 
-- conda install -c conda-forge librosa
+conda create --name capstoneExperimentation python=3.9 
+
+Note that I am on Windows rn
+- python -m pip install sounddevice
+- pip install librosa
+
 
 # Python Version
-I shouldddd do python 3.9 if dependencies allow it
-python = 3.10
+python = 3.9
 
 # Notes for General Set up
 Conda should install as many packages as it can on its own (at once/in one command), only then should pip be used. If more conda packages are needed after already using pip then it's best to remake the conda environment.
 
 So an environment.yaml should be made for conda. And, if necessary, a requirements.txt should be made for the python packages (Yes you can add wildcard characters for the package's versions).
 
+sounddevice must be installed with pip. Same with librosa
+
 # Links for General Set up
+
+### For sounddevice (causes so many issues)
+https://github.com/pyinstaller/pyinstaller/issues/7065
+
 **To preview markdown files without downloading any extensions.**</br>
 https://stackoverflow.com/questions/73049432/how-can-i-open-a-md-file-in-vs-code-preview-mode-from-terminal
 
