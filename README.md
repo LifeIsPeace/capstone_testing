@@ -10,12 +10,19 @@ Note that I am on Windows rn
 # Python Version
 python = 3.9
 
+# Windows BS that you might have to go through
+- In conda if name isn't found, copy and paste the whole file name
+- Never use SSH for github. Never works until it does. Trash
+
 # Notes for General Set up
 Conda should install as many packages as it can on its own (at once/in one command), only then should pip be used. If more conda packages are needed after already using pip then it's best to remake the conda environment.
 
 So an environment.yaml should be made for conda. And, if necessary, a requirements.txt should be made for the python packages (Yes you can add wildcard characters for the package's versions).
 
 sounddevice must be installed with pip. Same with librosa
+
+# README
+"ctrl + shift + v" on windows to preview markdown
 
 # Links for General Set up
 
