@@ -3,30 +3,35 @@
 conda create --name capstoneExperimentation python=3.9 
 
 Note that I am on Windows rn
+
 - python -m pip install sounddevice
 - pip install librosa
 
+## Python Version
 
-# Python Version
 python = 3.9
 
-# Windows BS that you might have to go through
+## Windows BS that you might have to go through
+
 - In conda if name isn't found, copy and paste the whole file name
 - Never use SSH for github. Never works until it does. Trash
 
-# Notes for General Set up
+## Notes for General Set up
+
 Conda should install as many packages as it can on its own (at once/in one command), only then should pip be used. If more conda packages are needed after already using pip then it's best to remake the conda environment.
 
 So an environment.yaml should be made for conda. And, if necessary, a requirements.txt should be made for the python packages (Yes you can add wildcard characters for the package's versions).
 
 sounddevice must be installed with pip. Same with librosa
 
-# README
+## README
+
 "ctrl + shift + v" on windows to preview markdown
 
-# Links for General Set up
+## Links for General Set up
 
 ### For sounddevice (causes so many issues)
+
 https://github.com/pyinstaller/pyinstaller/issues/7065
 
 **To preview markdown files without downloading any extensions.**</br>
@@ -35,11 +40,13 @@ https://stackoverflow.com/questions/73049432/how-can-i-open-a-md-file-in-vs-code
 **!!! How can we use pyproject.toml with conda?**
 https://stackoverflow.com/questions/76722680/what-is-the-best-way-to-combine-conda-with-standard-python-packaging-tools-e-g
 
-# Notes about command line
+## Notes about command line
+
 **Argsparse is the command line tool used for python (Ex: pip install -r requirements.txt | What does "-r" mean in this context. That's argsparse)**</br>
 https://docs.python.org/3/library/argparse.html
 
-# Notes about pyproject.toml
+## Notes about pyproject.toml
+
 So pyproject.toml in this context should be used for metadata and equivalently to requirements.txt. It really shines when using python package and project managers (handles virtual environments), but we're already using conda.
 
 **Must read for implementation** <br/>
