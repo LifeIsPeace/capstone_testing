@@ -1,11 +1,14 @@
 # Packages to note
 
-conda create --name capstoneExperimentation python=3.9 
+conda create --name capstoneExperimentation python=3.9 pandas
 
 Note that I am on Windows rn
 
 - python -m pip install sounddevice
 - pip install librosa
+
+In case environment is already made [These are downloaded while creating environment usually]
+- conda install -c conda-forge pandas
 
 ## Python Version
 
@@ -17,6 +20,8 @@ python = 3.9
 - Never use SSH for github. Never works until it does. Trash
 
 ## Notes for General Set up
+
+!!!! DO NOT FORGET GENERICS WHEN NEEDED (Remember Computer Networking)
 
 Conda should install as many packages as it can on its own (at once/in one command), only then should pip be used. If more conda packages are needed after already using pip then it's best to remake the conda environment.
 
