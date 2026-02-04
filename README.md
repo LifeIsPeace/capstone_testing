@@ -11,7 +11,7 @@ In case environment is already made [These are downloaded while creating environ
 - conda install -c conda-forge pandas
 
 ## Python Version
-
+Latest stable Pytorch version requires Python 3.10. Revise later
 python = 3.9
 
 ## Windows BS that you might have to go through
