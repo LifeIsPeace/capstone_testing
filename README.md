@@ -1,18 +1,36 @@
 # Packages to note
 
-conda create --name capstoneExperimentation python=3.9 pandas
+-Cpu is default. You have to manually add gpu installation
+-y accepts all terms and conditions etc
+
+### This command PROBABLY installs gpu support which I don't need rn
+conda create --name capstoneExperimentation python=3.10 pandas pytorch torchvision torchaudio -c conda-forge -y
+
+Here's the plan. Pip install everything pytorch related, and if it goes wrong THEN try conda. 
+
+conda create --name capstoneExperimentation python=3.10 pandas -y
+
+
 
 Note that I am on Windows rn
+DO NOT pip3 install sounddevice and librosa. That gave me issues
 
-- python -m pip install sounddevice
-- pip install librosa
+```
+python -m pip install sounddevice
+pip install librosa
+pip install pretty-midi
+pip3 install torch torchvision
+pip3 install torchaudio
+pip install soundfile
+```
 
 In case environment is already made [These are downloaded while creating environment usually]
 - conda install -c conda-forge pandas
+conda install pytorch torchvision torchaudio -c conda-forge
 
 ## Python Version
-Latest stable Pytorch version requires Python 3.10. Revise later
-python = 3.9
+Latest stable Pytorch version requires Python 3.10.
+python = 3.10
 
 ## Windows BS that you might have to go through
 

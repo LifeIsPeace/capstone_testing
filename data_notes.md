@@ -15,3 +15,11 @@ Pure Path Useless lol. Unless you're dealing with multiple os's in some way.
 is the file extention.
 - In the future, iterate through the folders with training data (2004,2006, etc) by reading if the file begins with a digit
 Make sure to store if you have already iterated through it.
+
+# The hard stuff
+- Sample rate in this context means "how many audio samples per second". So sample_rate = 16000 means 16000 per second
+- The hop length is meant for the mel spectrogram. You slice audio into overlapping frames. Each frame starts 512 samples after the previous one.
+- Frames per second makes: one mel frame = one piano-roll frame
+
+# Caching
+Make sure to implement caching for speedups
