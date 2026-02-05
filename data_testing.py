@@ -72,7 +72,6 @@ def main():
     test_pairs = get_pairs(df, "test")[:20]
 
     # This actually loads the data
-
     train_ds = MaestroDataset(train_pairs)
     val_ds = MaestroDataset(val_pairs)
     test_ds = MaestroDataset(test_pairs)
@@ -89,6 +88,7 @@ def main():
         test_ds, batch_size=4, shuffle=False
     )
 
+    # Can't use a gpu yet
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     model = PitchNet(n_mels=128, n_pitches=88).to(device)

@@ -17,6 +17,8 @@ class PitchNet(nn.Module):
             nn.MaxPool2d(kernel_size=(2, 1)),
         )
 
+        # This should be deeper features
+        # Brush up on what everything means. I'm going off of AI class last year
         self.conv_stack2 = nn.Sequential(
             nn.Conv2d(64, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),

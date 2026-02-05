@@ -15,7 +15,10 @@ The model needs to ensure time resolution is unaffected
 
 So the goal is to compress frequency but preserve time and classify pitch per frame
 
-## Remember this is a multi-label classification (not multi-class)
+## Remember this is a multi-label classification (not multi-class meaning exactly one class is correct)
 The sigmoid function gives the probability of a note being on or off. Remember the network outputs logits (unnomalized final scores of the model)
+The sigmoid turns it into a probability that a pitch is active
 
-Sigmoid + BCE is good for 
+BCEWithLogitsLoss is commonly used. Research later
+
+The Adam (Adpative Moment Estimation) optimizer is standard for audio. We need to choose a good learning rate. Play around with it
