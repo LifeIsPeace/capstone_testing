@@ -10,3 +10,6 @@
 
 - Use a midifile as the label rather than explicit note names like "A1", "A2"
 - All datasets must be converted to the same label format. Maestro defines label semantics
+
+### Licensing
+https://creativecommons.org/licenses/by-nc-sa/4.0/
