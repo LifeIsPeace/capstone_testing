@@ -5,15 +5,23 @@ class PitchNet(nn.Module):
         super().__init__()
         
         # BatchNorm + ReLU
+        # THe issue is negative values and relu. We want to prevent that because negatives values are 0 for relu soooo
+        # we batchnorm it first
+        
+        # Squential obviously for con2d then batchnorm2d then relu
         self.conv_stack = nn.Sequential(
+            # 1 in channel (audio), 32 out channels, padding for edge spatial features(Trusting old me's notes)
             nn.Conv2d(1, 32, kernel_size=3, padding=1),
+            # Essentially gets the mean (approx 0) and standard dev (aprox one) across a batch
             nn.BatchNorm2d(32),
+            # Gotta deal with disappearing gradient problem so Relu seems good
             nn.ReLU(),
 
             nn.Conv2d(32, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
             # frequency pooling only (it halves the frequency dimension) meaning it does not touch time
+            # downsamples the spatial dimensions (retains important feature information)
             nn.MaxPool2d(kernel_size=(2, 1)),
         )
 
