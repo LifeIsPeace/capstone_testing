@@ -45,7 +45,7 @@ class PitchNet(nn.Module):
         returns: (B, 88, T)
         """
         x = mel.unsqueeze(1) # (B, 1, 128, T)
-        x = self.conv_stack(x)    # (B, 64, 64, T)
+        x = self.conv_stack(x)  # (B, 64, 64, T)
         x = self.conv_stack2(x)   # (B, 128, 32, T)
 
         B, C, F, T = x.shape
