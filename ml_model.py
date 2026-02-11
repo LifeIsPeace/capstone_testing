@@ -51,14 +51,25 @@ class PitchNet(nn.Module):
         T: Number of time frames
         """
         x = mel.unsqueeze(1) # (B, 1, 128, T)
+        # Conv2D expects input (B, Channels, Height, Width)
+        # This reduces frequency but preserves the time dimension
         x = self.conv_stack(x) # (B, 64, 64, T)
+        # This further compresses the spectral representation
         x = self.conv_stack2(x)  # (B, 128, 32, T)
 
+        # Unpack the dimensions
         B, C, F, T = x.shape
+        # Reorder the dimensions. We want to treat each time frame independently
         x = x.permute(0, 3, 1, 2)  # (B, T, C, F)
+        # This flattens all frequency and channel frequencies into one vector
+        # Each time frame now has a learned spectral embedding
+        # Think of it as (128 channels x 32 frequency bins) per time frame or
+        # or 4096 feature vectors per time frame
         x = x.reshape(B, T, C * F)  # (B, T, 128*32)
 
-        x = self.fc(x)  # (B, T, 88)
+        # Remember .fc = nn.Linear
+        # 88 note logits. Remember logits are not probabilities
+        x = self.fc(x)  # (B, T, 88) because paino roll labels are (B, 88, T)
         x = x.permute(0, 2, 1)  # (B, 88, T)
 
         return x
