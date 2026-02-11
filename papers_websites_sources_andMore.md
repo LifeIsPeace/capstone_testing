@@ -28,4 +28,12 @@ https://github.com/DamRsn/NeuralNote
 
 ```
 
-## Put on google
+## Papers that are great to review but I can't cite because you have to pay to access but y'know
+
+```
+https://medium.com/thedeephub/batch-normalization-for-training-neural-networks-328112bda3ae
+https://medium.com/data-science/conv2d-to-finally-understand-what-happens-in-the-forward-pass-1bbaafb0b148
+
+```
+
+## Put on google doc
