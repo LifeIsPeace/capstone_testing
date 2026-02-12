@@ -43,6 +43,7 @@ class MaestroDataset(Dataset):
         wav_path, midi_path = self.pairs[idx]
 
         # Audio is a Raw waveform tensor (np.float32 array)
+        # sr is sample rate
         audio, sr = sf.read(wav_path)
         audio = torch.tensor(audio).float()
         

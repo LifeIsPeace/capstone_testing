@@ -22,8 +22,13 @@ https://arxiv.org/abs/2203.09893
 
 ``` english
 https://github.com/spotify/basic-pitch?tab=readme-ov-file
+
 https://muspy.readthedocs.io/en/latest/datasets/datasets.html
+
 https://github.com/DamRsn/NeuralNote
+
+https://www.geeksforgeeks.org/machine-learning/multiclass-classification-vs-multi-label-classification/
+
 
 
 ```
