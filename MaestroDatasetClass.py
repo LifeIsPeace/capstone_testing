@@ -88,8 +88,10 @@ class MaestroDataset(Dataset):
         # mel.shape[1] is the time axis
         T = mel.shape[1]
         
+        # Look back and edit maybe
         if T < self.segment_frames:
             # If the pad is too short
+            # Essentially adds silence
             pad = self.segment_frames - T # How many extra frames are missing
             mel = torch.nn.functional.pad(mel, (0, pad)) # Pad adds 0 to the end of frame. Test its effects
             roll = torch.nn.functional.pad(roll, (0, pad))
