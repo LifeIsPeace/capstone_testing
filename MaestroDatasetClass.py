@@ -102,6 +102,15 @@ class MaestroDataset(Dataset):
             mel = mel[:, start:start + self.segment_frames]
             roll = roll[:, start:start + self.segment_frames]
 
+        # Forces alignment. Avoids random mismatches
+        T = min(mel.shape[1], roll.shape[1])
+        mel = mel[:,:T]
+        roll = roll[:,:T]
+        
+        # Unncessary now but you never know
+        if mel.shape[1] != roll.shape[1]:
+            print("Mismatch:", mel.shape, roll.shape)
+
         return mel, roll
     
     # mel: (128, T)

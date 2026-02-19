@@ -1,7 +1,8 @@
 import torch.nn as nn
 
 class PitchNet(nn.Module):
-    def __init__(self, n_mels=128, n_pitches=88):
+    # hidden_size
+    def __init__(self, n_mels=128, n_pitches=88, hidden_size=256):
         super().__init__()
         
         # BatchNorm + ReLU
@@ -14,7 +15,7 @@ class PitchNet(nn.Module):
             # We use 2d to simply capture audio features. Conv3d captures volume of data. 3d might be
             # better but let's keep it simple. Bigger kernel for start. Smaller as the data becomes
             # more dense
-            nn.Conv2d(1, 32, kernel_size=5, padding=1),
+            nn.Conv2d(1, 32, kernel_size=5, padding=2),
             # Normalizing helps improve training by handling covariance shift
             nn.BatchNorm2d(32),
             # Gotta deal with disappearing gradient problem so Relu seems good
@@ -40,12 +41,27 @@ class PitchNet(nn.Module):
 
         # Frequency dimension after pooling:
         # 128 -> 64 -> 32
-        self.fc = nn.Linear(128 * 32, n_pitches)
+        # After convolution + pooling stack each time step has:
+        # 128 channels and 32 frequency bins and these are to be flattened together
+        self.feature_dim = 128 * 32
+        
+        # Essentially reads a sequence and deciedes what to keep in memory and what to ignore
+        self.lstm = nn.LSTM(
+            input_size=self.feature_dim,
+            hidden_size=hidden_size, # LSTM output size per timestep is 2h because of the bidrectionality
+            num_layers=2,
+            batch_first=True,
+            bidirectional=True # LSTM processes sequence forward and bakward in time so output features are dounled
+        )
+        
+        # 
+        self.fc = nn.Linear(hidden_size * 2, n_pitches)
 
     # mel is a tensor
-    def forward(self, mel):
+    def forward(self, mel, lengths):
         """
         mel: (B, 128, T)
+        length: original T per sample
         returns: (B, 88, T)
         B: Batch size
         T: Number of time frames
@@ -66,6 +82,24 @@ class PitchNet(nn.Module):
         # Think of it as (128 channels x 32 frequency bins) per time frame or
         # or 4096 feature vectors per time frame
         x = x.reshape(B, T, C * F)  # (B, T, 128*32)
+        
+        # Pack sequence | This ignores padded frames inside the LSTM model
+        # Remember padding data is fake so we want to ignore it
+        # This removes padded timesteps before feeding it into the LSTM
+        packed = nn.utils.rnn.pack_padded_sequence(
+            x,
+            lengths.cpu(),
+            batch_first=True,
+            enforce_sorted=False
+        )
+        # Seems pointless BUT it works internally. We unpack it just so we can restore the shape for the next layers
+        packed_out, _ = self.lstm(packed)
+        
+        #unpack
+        x, _ = nn.utils.rnn.pad_packed_sequence(
+            packed_out,
+            batch_first=True
+        )
 
         # Remember .fc = nn.Linear
         # 88 note logits. Remember logits are not probabilities
