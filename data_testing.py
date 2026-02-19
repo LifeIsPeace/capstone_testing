@@ -182,10 +182,10 @@ def main():
         return pairs
 
     # Reduces the amount of data I'm using because good lord is it costly
-    # Ran with [:5] now trying more 
-    train_pairs = get_pairs(df, "train")[:300]
-    val_pairs = get_pairs(df, "validation")[:300]
-    test_pairs = get_pairs(df, "test")[:150]
+    # 80/10/10
+    train_pairs = get_pairs(df, "train")[:480]
+    val_pairs = get_pairs(df, "validation")[:60]
+    test_pairs = get_pairs(df, "test")[:60]
 
     # This actually loads the data
     train_ds = MaestroDataset(train_pairs)
