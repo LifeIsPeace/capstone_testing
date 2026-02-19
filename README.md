@@ -8,9 +8,9 @@ conda create --name capstoneExperimentation python=3.10 pandas pytorch torchvisi
 
 Here's the plan. Pip install everything pytorch related, and if it goes wrong THEN try conda. 
 
-conda create --name capstoneExperimentation python=3.10 pandas -y
+If this works add "nomkl" to conda install line
 
-
+conda create --name capstoneEnv python=3.10 
 
 Note that I am on Windows rn
 DO NOT pip3 install sounddevice and librosa. That gave me issues
@@ -18,15 +18,12 @@ DO NOT pip3 install sounddevice and librosa. That gave me issues
 ```
 python -m pip install sounddevice
 pip install librosa
+pip install pandas
 pip install pretty-midi
 pip3 install torch torchvision
 pip3 install torchaudio
 pip install soundfile
 ```
-
-In case environment is already made [These are downloaded while creating environment usually]
-- conda install -c conda-forge pandas
-conda install pytorch torchvision torchaudio -c conda-forge
 
 ## Python Version
 Latest stable Pytorch version requires Python 3.10.

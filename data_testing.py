@@ -1,8 +1,9 @@
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-import pandas as pd
+# This occurs if pandas is imported before torch. If you do then you have to use the os.environ line
+# os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import torch
 import torch.nn.functional as F
+import pandas as pd  # WOW. Import pandas AFTER torch. Or else OpemMP problem happens
 import sys
 from pathlib import Path
 from torch.utils.data import DataLoader
