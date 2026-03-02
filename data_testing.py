@@ -4,7 +4,6 @@ import os
 import torch
 import torch.nn.functional as F
 import pandas as pd  # WOW. Import pandas AFTER torch. Or else OpemMP problem happens
-import sys
 from pathlib import Path
 from torch.utils.data import DataLoader
 from MaestroDatasetClass import MaestroDataset

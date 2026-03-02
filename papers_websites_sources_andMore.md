@@ -15,7 +15,11 @@ https://arxiv.org/abs/2203.09893
 - Maestro download page- https://magenta.withgoogle.com/datasets/maestro#v300
 - Slakh2100 original page (http)- http://www.slakh.com/
 - Zenodo Slakh2100 (https; I wanted a secure download): https://zenodo.org/records/4599666
-  
+
+!!!!
+Utilize this guitar dataset
+- https://zenodo.org/records/3371780
+
 ```
 
 ## Other papers/sources to look at later
