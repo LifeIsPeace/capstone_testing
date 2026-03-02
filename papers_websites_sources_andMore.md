@@ -37,7 +37,8 @@ https://www.geeksforgeeks.org/machine-learning/multiclass-classification-vs-mult
 
 ```
 
-## Papers that are great to review but I can't cite because you have to pay to access but y'know
+## ~~Papers that are great to review but I can't cite because you have to pay to access but y'know~~
+Papers that are great and I CAN cite because you don't have to prove you paid.
 
 ``` english
 https://medium.com/thedeephub/batch-normalization-for-training-neural-networks-328112bda3ae
