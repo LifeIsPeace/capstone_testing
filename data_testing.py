@@ -14,15 +14,17 @@ def masked_bce_loss(logits, targets, lengths):
     """
     logits:  (B, 88, T): Raw model outputs
     targets: (B, 88, T): 0 or 1 is it on or not
-    lengths: (B,): Real sequence lengths before padding
+    lengths: (B,): Real sequence lengths before padding | Comes from unpacked loader
     """
 
     # B: Batch size
     # T: Maximum time dimension
     B, _, T = logits.shape
 
-    # .arange creates time indices
+    # .arange returns 1D tensor (end-start where T is the start) of time indices
+    # Only dimensions of size 1 can be expanded
     # True (for <) if real timestep, false if padded
+    # Mask is a matrix with true or false values
     mask = torch.arange(T, device=lengths.device).expand(B, T) < lengths.unsqueeze(1)
     # Add pitch dimension
     mask = mask.unsqueeze(1)  # (B, 1, T)
