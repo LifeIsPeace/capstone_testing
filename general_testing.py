@@ -6,6 +6,10 @@ import torch
 [[1,2],[2,3]]: Size([2,2])
 [[1,2],[2,3],[4,5]]: Size([3,2])
 """
-x = torch.tensor([[1,2],[2,3],[4,5]])
-print(x.shape)
-print(torch.unsqueeze(x, 1).shape)
+x = torch.tensor([[1], [2], [3]])
+x.size()
+print(x)
+x = x.expand(3, 2)
+print(x)
+x = x.expand(3, 2)   # -1 means not changing the size of that dimension
+print(x)

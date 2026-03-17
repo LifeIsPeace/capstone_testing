@@ -11,13 +11,13 @@ from ml_model import PitchNet
 from Helper_Files import (masked_bce_loss,
                           validate,
                           collate_fn,
-                          ROOT,
-                          ROOT_STR,
-                          CSV_PATH)
+                          Maestro_ROOT,
+                          Maestro_ROOT_STR,
+                          Maestro_CSV_PATH)
         
 
 def main():
-    df = pd.read_csv(CSV_PATH)
+    df = pd.read_csv(Maestro_CSV_PATH)
     # print(df.head())
     # print(df["split"].value_counts())
 
@@ -26,8 +26,8 @@ def main():
         
         pairs = []
         for _, row in subset.iterrows():
-            wav = ROOT / row["audio_filename"]
-            midi = ROOT / row["midi_filename"]
+            wav = Maestro_ROOT / row["audio_filename"]
+            midi = Maestro_ROOT / row["midi_filename"]
             pairs.append((wav, midi))
             
         return pairs

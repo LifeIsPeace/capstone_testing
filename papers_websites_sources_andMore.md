@@ -15,7 +15,11 @@ https://arxiv.org/abs/2203.09893
 - Maestro download page- https://magenta.withgoogle.com/datasets/maestro#v300
 - Slakh2100 original page (http)- http://www.slakh.com/
 - Zenodo Slakh2100 (https; I wanted a secure download): https://zenodo.org/records/4599666
-  
+
+!!!!
+Utilize this guitar dataset
+- https://zenodo.org/records/3371780
+
 ```
 
 ## Other papers/sources to look at later
@@ -33,7 +37,8 @@ https://www.geeksforgeeks.org/machine-learning/multiclass-classification-vs-mult
 
 ```
 
-## Papers that are great to review but I can't cite because you have to pay to access but y'know
+## ~~Papers that are great to review but I can't cite because you have to pay to access but y'know~~
+Papers that are great and I CAN cite because you don't have to prove you paid.
 
 ``` english
 https://medium.com/thedeephub/batch-normalization-for-training-neural-networks-328112bda3ae
