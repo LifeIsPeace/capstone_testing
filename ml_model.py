@@ -54,7 +54,7 @@ class PitchNet(nn.Module):
             bidirectional=True # LSTM processes sequence forward and bakward in time so output features are dounled
         )
         
-        # 
+        # Framewise classifier
         self.fc = nn.Linear(hidden_size * 2, n_pitches)
 
     # mel is a tensor

@@ -4,11 +4,7 @@
 -y accepts all terms and conditions etc
 
 ### This command PROBABLY installs gpu support which I don't need rn
-conda create --name capstoneExperimentation python=3.10 pandas pytorch torchvision torchaudio -c conda-forge -y 
-
 Here's the plan. Pip install everything pytorch related, and if it goes wrong THEN try conda. 
-
-If this works add "nomkl" to conda install line
 
 conda create --name capstoneEnv python=3.10 
 
