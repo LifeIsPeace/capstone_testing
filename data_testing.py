@@ -1,9 +1,8 @@
-import os
 # This occurs if pandas is imported before torch. If you do then you have to use the os.environ line
 # os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import torch
 import torch.nn.functional as F
-import pandas as pd  # WOW. Import pandas AFTER torch. Or else OpemMP problem happens
+import pandas as pd  # WOW. Import pandas AFTER torch. Or else OpemMP problem happens``
 from pathlib import Path
 from torch.utils.data import DataLoader
 from MaestroDatasetClass import MaestroDataset
@@ -15,8 +14,48 @@ from Helper_Files import (masked_bce_loss,
                           Maestro_ROOT_STR,
                           Maestro_CSV_PATH)
         
+        
+def slakhdataset():
+    SLAKH_PATH: Path = Path(r"D:\capstone_project_data\slakh2100_dataset\synthesized_lakh_dataset\slakh2100_flac_redux")
+    splits = ["train", "validation", "test"]
+    rows = []
+    
+    for split in splits:
+        split_path: Path = SLAKH_PATH / split
+        
+        for track_path in split_path.iterdir():
+            if not track_path.is_dir():
+                continue
+    
+            # audio file
+            audio_path = track_path / "mix.flac"
+            
+            # MIDI folder
+            midi_folder = track_path / "MIDI"
+            
+            if not midi_folder.exists():
+                continue
+            
+            # loop through the midi files
+            for midi_path in midi_folder.glob("*.mid"):
+                rows.append({
+                    "split": split,
+                    "track_id": track_path.name,
+                    "audio_path": str(audio_path),
+                    "midi_path": str(midi_path)
+                })
+    
+    df = pd.DataFrame(rows)    
+    return df
 
 def main():
+    
+    df = slakhdataset()
+    print(df.head())
+    print(df["split"].value_counts())
+    return
+    
+    
     df = pd.read_csv(Maestro_CSV_PATH)
     # print(df.head())
     # print(df["split"].value_counts())
