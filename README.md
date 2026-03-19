@@ -20,6 +20,7 @@ pip3 install torch torchvision
 pip3 install torchaudio
 pip install soundfile
 pip install -U scikit-learn
+pip install matplotlib
 ```
 
 ## Python Version

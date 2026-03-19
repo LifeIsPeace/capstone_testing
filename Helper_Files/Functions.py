@@ -1,5 +1,6 @@
 import torch
 import torch.nn.functional as F
+import matplotlib.pyplot as plt
 
 def masked_bce_loss(logits, targets, lengths):
     """
@@ -82,6 +83,21 @@ def validate(model, loader, device):
         # Metrics
         probs = torch.sigmoid(logits)
         preds = (probs > 0.5).float()
+        
+        if not hasattr(validate, "plotted"):
+
+            pred_roll = preds[0].cpu().numpy()
+            gt_roll = probs[0].cpu().numpy()
+
+            plt.imshow(pred_roll.T, aspect='auto', origin='lower')
+            plt.title("Predicted Piano Roll")
+            plt.show()
+
+            plt.imshow(gt_roll.T, aspect='auto', origin='lower')
+            plt.title("Ground Truth Piano Roll")
+            plt.show()
+
+            validate.plotted = True
 
         B, _, T = logits.shape
 
@@ -126,9 +142,9 @@ def validate(model, loader, device):
     - Returns stacked tensors + original lengths
     """
 def collate_fn(batch):
-    mels, rolls = zip(*batch)
+    mels, rolls, _ = zip(*batch)
 
-    lengths = torch.tensor([m.shape[1] for m in mels])
+    lengths = torch.tensor([max(1, m.shape[1]) for m in mels])
 
     max_T = max(lengths)
 

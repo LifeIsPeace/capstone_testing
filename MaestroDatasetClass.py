@@ -14,7 +14,7 @@ from torch.utils.data import Dataset
 class MaestroDataset(Dataset):
     def __init__(
         self,
-        pairs, # (wav_path, midi_path)
+        pairs, # (audio_path, midi_path)
         sample_rate = 16000, # In hz
         n_mels = 128, # Mel Frequency resolution essentially
         hop_length = 512, # Number of audio samples between consecutive frames
@@ -40,11 +40,18 @@ class MaestroDataset(Dataset):
         return len(self.pairs)
 
     def __getitem__(self, idx):
-        wav_path, midi_path = self.pairs[idx]
+        audio_path, midi_path, dataset = self.pairs[idx]
 
         # Audio is a Raw waveform tensor (np.float32 array)
         # sr is sample rate
-        audio, sr = sf.read(wav_path)
+        audio, sr = sf.read(audio_path)
+        
+        # Slakh2100 is sythesized audio while maestro is real audio (dynamic range varies think classical music)
+        audio = librosa.util.normalize(audio)
+        
+        # Temporary scaling
+        audio = audio * 0.1
+        
         audio = torch.tensor(audio).float()
         
         if audio.ndim == 2: 
@@ -89,6 +96,11 @@ class MaestroDataset(Dataset):
         # mel.shape[1] is the time axis
         T = mel.shape[1]
         
+        if T <= 1:
+            mel = torch.zeros(self.n_mels, self.segment_frames)
+            roll = torch.zeros(self.max_midi - self.min_midi + 1, self.segment_frames)
+            return mel, roll, "invalid"
+        
         # Look back and edit maybe
         if T < self.segment_frames:
             # If the pad is too short
@@ -111,7 +123,7 @@ class MaestroDataset(Dataset):
         if mel.shape[1] != roll.shape[1]:
             print("Mismatch:", mel.shape, roll.shape)
 
-        return mel, roll
+        return mel, roll, dataset
     
     # mel: (128, T)
     # roll: (88, T)
